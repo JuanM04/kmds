@@ -1,0 +1,123 @@
+{
+  "telemetry.enableTelemetry": false,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.renderControlCharacters": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.fontFamily": "'FiraCode Nerd Font', 'Cascadia Code', Hack, Menlo, Monaco, 'Courier New', monospace",
+  "editor.letterSpacing": 0.15,
+  "editor.fontWeight": "normal",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 12,
+  "terminal.integrated.fontSize": 12,
+  "editor.smoothScrolling": true,
+  "editor.scrollBeyondLastLine": false,
+  "editor.renderWhitespace": "selection",
+  "editor.formatOnSave": true,
+  "breadcrumbs.enabled": true,
+  "window.zoomLevel": 1,
+  "editor.semanticHighlighting.enabled": false,
+
+  "workbench.list.smoothScrolling": true,
+  "workbench.colorTheme": "Tokyo Night",
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.activeIconPack": "react",
+  "todohighlight.keywords": [
+    {
+      "text": "TODO:",
+      "color": "white",
+      "backgroundColor": "#9ECE6A"
+    },
+    {
+      "text": "FIXME:",
+      "color": "white",
+      "backgroundColor": "#BB9AF7"
+    },
+    {
+      "text": "DEBUG:",
+      "color": "white",
+      "backgroundColor": "#FF9E64"
+    },
+    {
+      "text": "NOTE:",
+      "color": "black",
+      "backgroundColor": "#E0AF68"
+    }
+  ],
+
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+
+  // "sync.gist": "995a3d031bf16e9e30c45f034194105a",
+  // "sync.autoUpload": false,
+  // "sync.forceUpload": false,
+  "files.associations": {
+    "*.html": "html",
+    "*.js": "javascript",
+    "*.prisma": "prisma",
+    ".todo": "markdown"
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.hg/store/**": true,
+    "**/.next/**": true
+  },
+
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 4
+  },
+  "json.schemas": [
+    {
+      "fileMatch": ["now.json", "vercel.json"],
+      "url": "https://gist.githubusercontent.com/JuanM04/9d472a39ca25106a71cb1ab5a5847d5d/raw/a5422308ee132223427d8dce59aa821d7e983726/vercel.schema.json"
+    }
+  ],
+
+  "[python]": {
+    "editor.tabSize": 4
+  },
+  "python.formatting.provider": "black",
+
+  "dart.flutterCreateOrganization": "com.juanm04",
+  "dart.debugExternalLibraries": true,
+  "dart.debugSdkLibraries": true,
+
+  "[gcode]": {
+    "editor.tabSize": 4
+  },
+  "[go]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false
+  },
+
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    "editor.wordWrap": "wordWrapColumn"
+  },
+  "markdown.extension.math.enabled": true,
+  "latex-workshop.view.pdf.viewer": "tab",
+  "[latex]": {
+    "editor.wordWrap": "on"
+  },
+  "rust.rust-analyzer.releaseTag": "stable",
+  "liveServer.settings.donotShowInfoMsg": true,
+}

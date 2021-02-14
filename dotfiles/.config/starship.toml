@@ -1,0 +1,5 @@
+[battery]
+disabled = true
+
+[dart]
+disabled = true
