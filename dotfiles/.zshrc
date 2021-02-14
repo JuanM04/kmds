@@ -37,7 +37,7 @@ eval "$(starship init zsh)"
 #=========#
 # Aliases #
 #=========#
-alias config="nano ~/.zshrc && source ~/.zshrc && reload-scripts && sync-config"
+alias config="nano ~/.zshrc && source ~/.zshrc"
 alias copy="xclip -selection clipboard"
 alias run="zsh"
 
@@ -82,7 +82,49 @@ fi
 #=========#
 # Scripts #
 #=========#
-source $HOME/.kmds/scripts/_main.sh
+SCRIPTS="$HOME/.kmds/scripts"
+alias inotify-consumers = "run $SCRIPTS/inotify-consumers.sh"
+alias replace           = "deno run --allow-read --allow-write $SCRIPTS/replace.ts"
+alias secrets-manager   = "run $SCRIPTS/secrets-manager.sh"
+alias setup-rpi         = "deno run --allow-write $SCRIPTS/setup-rpi.ts"
+alias sync-config       = "run $SCRIPTS/sync-config.sh"
+alias yarn-ts           = "deno run --allow-run --allow-net --allow-read $SCRIPTS/yarn-ts.ts"
+
+function cdc {
+  take $1
+  code .
+}
+
+function ytdl {
+  local OUT="$HOME/Downloads/%(title)s.%(ext)s"
+
+  if [[ $1 = "--mp3" ]]
+  then
+    youtube-dl -x --audio-format "mp3" -o $OUT $2
+  else
+    youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best" -o $OUT $1
+  fi
+}
+
+function quick-mount {
+  sudo mkdir /media/$USER/$2
+  sudo mount $1 /media/$USER/$2
+}
+
+function quick-unmount {
+  sudo umount /media/$USER/$1
+  sudo rm -rf /media/$USER/$1
+}
+
+function wsl-mount {
+  sudo mkdir /mnt/$1
+  sudo mount -t drvfs "$1:" /mnt/$1
+}
+
+function wsl-unmount {
+  sudo umount /mnt/$1
+  sudo rm -rf /mnt/$1
+}
 
 #========#
 # Others #
