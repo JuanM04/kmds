@@ -4,7 +4,12 @@
 
 ## New Killing Machine? \(OwO)/
 
-To set up, install `git`, clone this repo inside `~/.kmds` and run `nkm.sh`
+Set up your fresh new machine by running one of these commands:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/JuanM04/kmds/main/scripts/nkm.sh | bash
+wget -O - https://raw.githubusercontent.com/JuanM04/kmds/main/scripts/nkm.sh | bash
+```
 
 ## My Layout
 
@@ -39,6 +44,6 @@ As Adriaan says in a comment inside the US layout code:
 > often than registered, I moved registered to be next to copyright and added
 > ediaeresis and idiaeresis. - Adriaan
 
-## Sensitive
+## TOP SNEAKY
 
-Manage your **top sneaky** secrets with `secrets-manager.sh`. When using `secrets-manager unzip`, make sure ro have a `sensitive.tar.enc` inside `.kmds/sensitive`.
+Manage your secrets with `secrets-manager.sh`. When using `secrets-manager unzip`, make sure ro have a `sensitive.tar.enc` inside `.kmds/sensitive`.

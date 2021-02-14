@@ -48,7 +48,9 @@ if [ ! "$(command -v apt)" ]; then
   exit 1
 if
 
-cd ${HOME}/.kmds
+cd $HOME
+git clone https://github.com/JuanM04/kmds.git .kmds
+cd .kmds
 
 
 
