@@ -11,3 +11,5 @@
 	line-numbers-left-format = ""
 	line-numbers-right-format = "│ "
 	syntax-theme = Nord
+[init]
+	defaultBranch = main

@@ -168,6 +168,7 @@ nicelog "📜 Applying dotfiles..."
 
 cp dotfiles/* $HOME
 cat us-jm >> /usr/share/X11/xkb/symbols/us
+mkdir -p $HOME/dev/{projects,misc,tests,tools}
 
 
 

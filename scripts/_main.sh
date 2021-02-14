@@ -19,10 +19,6 @@ function notify {
   fi
 }
 
-function sync-config {
-  run $SCRIPTS/sync-config.sh
-}
-
 function cdc {
   take $1
   code .
@@ -37,22 +33,6 @@ function ytdl {
   else
     youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best" -o $OUT $1
   fi
-}
-
-function yarn-ts {
-  deno run --allow-run --allow-net --allow-read $SCRIPTS/yarn-ts.ts $@
-}
-
-function replace {
-  deno run --allow-read --allow-write $SCRIPTS/replace.ts $@
-}
-
-function inotify-consumers {
-  run $SCRIPTS/inotify-consumers.sh
-}
-
-function secrets-manager {
-  run $SCRIPTS/secrets-manager.sh
 }
 
 function quick-mount {
@@ -73,4 +53,32 @@ function wsl-mount {
 function wsl-unmount {
   sudo umount /mnt/$1
   sudo rm -rf /mnt/$1
+}
+
+#==================#
+# Map script files #
+#==================#
+
+function inotify-consumers {
+  run $SCRIPTS/inotify-consumers.sh
+}
+
+function replace {
+  deno run --allow-read --allow-write $SCRIPTS/replace.ts $@
+}
+
+function secrets-manager {
+  run $SCRIPTS/secrets-manager.sh $@
+}
+
+function setup-rpi {
+  deno run --allow-write $SCRIPTS/setup-rpi.ts
+}
+
+function sync-config {
+  run $SCRIPTS/sync-config.sh
+}
+
+function yarn-ts {
+  deno run --allow-run --allow-net --allow-read $SCRIPTS/yarn-ts.ts $@
 }

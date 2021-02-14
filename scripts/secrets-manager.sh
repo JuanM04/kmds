@@ -1,8 +1,14 @@
 #!/usr/bin/zsh
 
-SENSITIVE=$HOME/.kmds/sensitive
-mkdir -p $SENSITIVE
-cd $SENSITIVE
+if [ "$(pwd)" != "$HOME/.kmds/sensitive" ]
+then
+  echo "Because of permissions, make sure you are in \`$HOME/.kmds/sensitive\`"
+  exit 1
+fi
+
+# Keep sudo alive
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 
 
@@ -37,7 +43,7 @@ then
   sudo cp ssh.pub.key $HOME/.ssh/id_rsa.pub
 elif [ "$1" = "zip" ]
 then
-  tar -cvf sensitive.tar $(fd -I --exclude '*.enc' .) 
+  tar -cvf sensitive.tar $(fd -I --exclude 'sensitive.tar' --exclude 'sensitive.tar.enc' .) 
   openssl enc -aes-256-cbc -in sensitive.tar -out sensitive.tar.enc -salt
   rm sensitive.tar
 elif [ "$1" = "unzip" ]

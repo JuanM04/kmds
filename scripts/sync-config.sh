@@ -24,4 +24,3 @@ code --list-extensions > $DOTFILES/.config/Code/extensions.txt
 cd $HOME/.kmds
 git commit -am "[sync-config] $(date +%Y-%m-%dT%H:%M:%S%z)"
 git push origin main
-cd -
