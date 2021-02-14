@@ -39,7 +39,7 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 
-PACKAGES="git gh zsh python3 python3-pip curl wget imagemagick ffmpeg apt-transport-https ca-certificates software-properties-common"
+PACKAGES="git gh zsh gnupg2 python3 python3-pip curl wget imagemagick ffmpeg apt-transport-https ca-certificates software-properties-common"
 
 # Checks if i'm in a Debian-based distro
 if [ ! "$(command -v apt)" ]; then

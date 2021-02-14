@@ -38,3 +38,7 @@ As Adriaan says in a comment inside the US layout code:
 > became available. I added them next to ae. Because I write ediaeresis more
 > often than registered, I moved registered to be next to copyright and added
 > ediaeresis and idiaeresis. - Adriaan
+
+## Sensitive
+
+Manage your **top sneaky** secrets with `secrets-manager.sh`. When using `secrets-manager unzip`, make sure ro have a `sensitive.tar.enc` inside `.kmds/sensitive`.

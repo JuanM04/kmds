@@ -51,6 +51,10 @@ function inotify-consumers {
   run $SCRIPTS/inotify-consumers.sh
 }
 
+function secrets-manager {
+  run $SCRIPTS/secrets-manager.sh
+}
+
 function quick-mount {
   sudo mkdir /media/$USER/$2
   sudo mount $1 /media/$USER/$2
