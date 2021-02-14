@@ -18,12 +18,12 @@ echo "
 
 # Utilities
 
-function nicelog {
-  echo "\\n\\n$1"
+function nicelog() {
+  echo -e "\n\n$1"
   echo "=================================================="
 }
 
-function run-remote {
+function run-remote() {
   wget -O - $1 | bash
 }
 
@@ -39,29 +39,34 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 
-PACKAGES="git gh zsh gnupg2 python3 python3-pip curl wget imagemagick ffmpeg apt-transport-https ca-certificates software-properties-common"
+
+
+
+nicelog "📦 Installing Packages..."
+
+PACKAGES="git zsh gnupg2 python3 python3-pip curl wget imagemagick ffmpeg apt-transport-https ca-certificates software-properties-common dirmngr libgit2-dev libssh2-dev openssl-dev"
 
 # Checks if i'm in a Debian-based distro
 if [ ! "$(command -v apt)" ]; then
   echo "This ditro isn't Debian-based. Make sure to install: "
   echo "$PACKAGES"
   exit 1
-if
-
-cd $HOME
-git clone https://github.com/JuanM04/kmds.git .kmds
-cd .kmds
-
-
-
-
-
-nicelog "📦 Installing Packages..."
+fi
 
 sudo apt update
 sudo apt upgrade -y
 sudo apt install $PACKAGES -y
 pip3 install -U youtube-dl
+
+
+
+
+
+nicelog "📂 Getting KMDS files..."
+
+cd $HOME
+git clone https://github.com/JuanM04/kmds.git .kmds
+cd .kmds
 
 
 
@@ -102,7 +107,7 @@ source $HOME/.cargo/env
 
 nicelog "🦀 Installing Rust binaries (including, but no limited to, Alacritty, Starship, Cargo Update)..."
 
-cargo install alacritty bat cargo-update cross exa fd-find git-delta procs ripgrep starship
+cargo install alacritty bat cargo-update exa fd-find git-delta procs ripgrep starship
 
 
 
@@ -110,15 +115,27 @@ cargo install alacritty bat cargo-update cross exa fd-find git-delta procs ripgr
 
 nicelog "🐋 Installing Docker..."
 
-if [$(command -v add-apt-repository)] && [$(command -v lsb_release)]; then
+if [$(command -v lsb_release)]; then
   wget -O - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -sc) stable"
   sudo apt update
-  sudo apt install docker-ce
+  sudo apt install docker-ce docker-ce-cli containerd.io
   sudo usermod -aG docker ${USER}
 else
-  echo "Either `add-apt-repository` or `lsb_release` is missing"
+  echo "\`lsb_release\` is missing"
 fi
+
+
+
+
+
+nicelog "🐱 Installing GitHub CLI..."
+
+wget -O gh.deb https://github.com/cli/cli/releases/download/v1.5.0/gh_1.5.0_linux_amd64.deb
+sudo apt install ./gh.deb -y
+rm gh.deb
+sudo apt update
+sudo apt upgrade -y
 
 
 
@@ -140,8 +157,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_PLUGINS
 nicelog "🅿️ FiraCode Nerd Font"
 
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
-mkdir -p .fonts/
-unzip FiraCode.zip -d .fonts/
+mkdir -p ${HOME}/.fonts/
+unzip FiraCode.zip -d ${HOME}/.fonts/
 rm FiraCode.zip
 fc-cache -fv
 
@@ -166,9 +183,9 @@ done
 
 nicelog "📜 Applying dotfiles..."
 
-cp dotfiles/* $HOME
-cat us-jm >> /usr/share/X11/xkb/symbols/us
-mkdir -p $HOME/dev/{projects,misc,tests,tools}
+cp -rT dotfiles $HOME/
+sudo sh -c "cat us-jm >> /usr/share/X11/xkb/symbols/us"
+mkdir -p ${HOME}/dev/{projects,misc,tests,tools}
 
 
 

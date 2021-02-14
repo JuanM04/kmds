@@ -2,13 +2,13 @@
 
 - All scripts ended with `.ts` are ment to be run with Deno
 
-## New Killing Machine? \(OwO)/
+## New Killing Machine? \\(OwO)/
 
 Set up your fresh new machine by running one of these commands:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/JuanM04/kmds/main/scripts/nkm.sh | bash
-wget -O - https://raw.githubusercontent.com/JuanM04/kmds/main/scripts/nkm.sh | bash
+curl -fsSL https://juanm04.com/nkm.sh | bash
+wget -O - https://juanm04.com/nkm.sh | bash
 ```
 
 ## My Layout
