@@ -44,19 +44,24 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 nicelog "📦 Installing Packages..."
 
-PACKAGES="git zsh gnupg2 python3 python3-pip curl wget imagemagick ffmpeg apt-transport-https ca-certificates software-properties-common dirmngr libgit2-dev libssh2-dev openssl-dev"
-
-# Checks if i'm in a Debian-based distro
-if [ ! "$(command -v apt)" ]; then
-  echo "This ditro isn't Debian-based. Make sure to install: "
-  echo "$PACKAGES"
+if [ "$(command -v apt)" ]; then
+  DISTRO="debian"
+elif [ "$(command -v pacman)" ]; then
+  DISTRO="arch"
+else
+  echo "This ditro isn't supported. Make sure to install git, zsh, gpg, python3, curl, wget, imagemagick, ffmpeg, libgit2, libssh2, openssl, and other distro-specific dependencies"
   exit 1
 fi
 
-sudo apt update
-sudo apt upgrade -y
-sudo apt install $PACKAGES -y
-pip3 install -U youtube-dl
+if [ $DISTRO = "debian"]; then
+  sudo apt update
+  sudo apt upgrade -y
+  sudo apt install -y git zsh gnupg2 python3 python3-pip curl wget imagemagick ffmpeg apt-transport-https ca-certificates software-properties-common lsb_release libgit2-dev libssh2-dev openssl-dev
+elif [ $DISTRO = "arch" ]; then
+  sudo pacman -Syu git zsh gnupg python python-pip curl wget imagemagick ffmpeg libgit2 libssh2 
+fi
+
+pip install -U youtube-dl
 
 
 
@@ -87,15 +92,6 @@ yarn global add blitz degit serve vercel
 
 
 
-nicelog "🖤 Installing Deno..."
-
-run-remote https://deno.land/x/install/install.sh
-export PATH="$PATH:/$HOME/.deno/bin"
-
-
-
-
-
 nicelog "🦀 Installing Rust..."
 
 run-remote https://sh.rustup.rs
@@ -109,21 +105,40 @@ nicelog "🦀 Installing Rust binaries (including, but no limited to, Alacritty,
 
 cargo install alacritty bat cargo-update exa fd-find git-delta procs ripgrep starship
 
+if [ $DISTRO = "arch" ]; then
+  sudo pacman -S --needed base-devel
+  git clone https://aur.archlinux.org/paru.git
+  cd paru
+  makepkg -si
+  cd ..
+  rm -rf paru
+fi
+
+
+
+
+
+nicelog "🖤 Installing Deno..."
+
+run-remote https://deno.land/x/install/install.sh
+export PATH="$PATH:/$HOME/.deno/bin"
+
 
 
 
 
 nicelog "🐋 Installing Docker..."
 
-if [$(command -v lsb_release)]; then
+if [ $DISTRO = "debian" ]; then
   wget -O - https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -sc) stable"
   sudo apt update
   sudo apt install docker-ce docker-ce-cli containerd.io
-  sudo usermod -aG docker ${USER}
-else
-  echo "\`lsb_release\` is missing"
+elif [ $DISTRO = "arch" ]; then
+  pacman -S docker docker-compose
 fi
+
+sudo usermod -aG docker ${USER}
 
 
 
@@ -131,11 +146,14 @@ fi
 
 nicelog "🐱 Installing GitHub CLI..."
 
-wget -O gh.deb https://github.com/cli/cli/releases/download/v1.5.0/gh_1.5.0_linux_amd64.deb
-sudo apt install ./gh.deb -y
-rm gh.deb
-sudo apt update
-sudo apt upgrade -y
+if [ $DISTRO = "debian" ]; then
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+  sudo apt-add-repository https://cli.github.com/packages
+  sudo apt update
+  sudo apt install gh
+elif [ $DISTRO = "arch" ]; then
+  pacman -S github-cli
+fi
 
 
 
@@ -156,11 +174,15 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_PLUGINS
 
 nicelog "🅿️ FiraCode Nerd Font"
 
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
-mkdir -p ${HOME}/.fonts/
-unzip FiraCode.zip -d ${HOME}/.fonts/
-rm FiraCode.zip
-fc-cache -fv
+if [ $DISTRO = "debian" ]; then
+  wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+  mkdir -p ${HOME}/.local/share/fonts
+  unzip FiraCode.zip -d ${HOME}/.local/share/fonts
+  rm FiraCode.zip
+  fc-cache -fv
+elif [ $DISTRO = "arch" ]; then
+  paru nerd-fonts-fira-code
+fi
 
 
 
@@ -168,9 +190,13 @@ fc-cache -fv
 
 nicelog "📝 Installing VSCode..."
 
-wget -O code.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
-sudo apt install ./code.deb -y
-rm code.deb
+if [ $DISTRO = "debian" ]; then
+  wget -O code.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+  sudo apt install ./code.deb -y
+  rm code.deb
+elif [ $DISTRO = "arch" ]; then
+  pacman -S code
+fi
 
 for extension in $(cat dotfiles/.config/Code/extensions.txt)
 do

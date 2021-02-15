@@ -79,6 +79,8 @@ if [ "$(command -v ps)" ]; then
   alias find="procs"
 fi
 
+alias git-clean="git clean -dfX"
+
 #=========#
 # Scripts #
 #=========#
