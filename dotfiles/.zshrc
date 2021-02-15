@@ -85,12 +85,12 @@ alias git-clean="git clean -dfX"
 # Scripts #
 #=========#
 SCRIPTS="$HOME/.kmds/scripts"
-alias inotify-consumers = "run $SCRIPTS/inotify-consumers.sh"
-alias replace           = "deno run --allow-read --allow-write $SCRIPTS/replace.ts"
-alias secrets-manager   = "run $SCRIPTS/secrets-manager.sh"
-alias setup-rpi         = "deno run --allow-write $SCRIPTS/setup-rpi.ts"
-alias sync-config       = "run $SCRIPTS/sync-config.sh"
-alias yarn-ts           = "deno run --allow-run --allow-net --allow-read $SCRIPTS/yarn-ts.ts"
+alias inotify-consumers="run $SCRIPTS/inotify-consumers.sh"
+alias replace="deno run --allow-read --allow-write $SCRIPTS/replace.ts"
+alias secrets-manager="run $SCRIPTS/secrets-manager.sh"
+alias setup-rpi="deno run --allow-write $SCRIPTS/setup-rpi.ts"
+alias sync-config="run $SCRIPTS/sync-config.sh"
+alias yarn-ts="deno run --allow-run --allow-net --allow-read $SCRIPTS/yarn-ts.ts"
 
 function cdc {
   take $1

@@ -53,12 +53,13 @@ else
   exit 1
 fi
 
-if [ $DISTRO = "debian"]; then
+if [ $DISTRO = "debian" ]; then
   sudo apt update
   sudo apt upgrade -y
   sudo apt install -y git zsh gnupg2 python3 python3-pip curl wget imagemagick ffmpeg apt-transport-https ca-certificates software-properties-common lsb_release libgit2-dev libssh2-dev openssl-dev
 elif [ $DISTRO = "arch" ]; then
-  sudo pacman -Syu git zsh gnupg python python-pip curl wget imagemagick ffmpeg libgit2 libssh2 
+  sudo pacman -Syu
+  sudo pacman -S git zsh gnupg python python-pip curl wget imagemagick ffmpeg base-devel libgit2 libssh2 openssl
 fi
 
 pip install -U youtube-dl
@@ -94,7 +95,12 @@ yarn global add blitz degit serve vercel
 
 nicelog "🦀 Installing Rust..."
 
-run-remote https://sh.rustup.rs
+if [ $DISTRO = "debian" ]; then
+	run-remote https://sh.rustup.rs
+elif [ $DISTRO = "arch" ]; then
+	sudo pacman -S rust
+fi
+
 source $HOME/.cargo/env
 
 
@@ -106,7 +112,6 @@ nicelog "🦀 Installing Rust binaries (including, but no limited to, Alacritty,
 cargo install alacritty bat cargo-update exa fd-find git-delta procs ripgrep starship
 
 if [ $DISTRO = "arch" ]; then
-  sudo pacman -S --needed base-devel
   git clone https://aur.archlinux.org/paru.git
   cd paru
   makepkg -si
@@ -135,7 +140,7 @@ if [ $DISTRO = "debian" ]; then
   sudo apt update
   sudo apt install docker-ce docker-ce-cli containerd.io
 elif [ $DISTRO = "arch" ]; then
-  pacman -S docker docker-compose
+  sudo pacman -S docker docker-compose
 fi
 
 sudo usermod -aG docker ${USER}
@@ -152,7 +157,7 @@ if [ $DISTRO = "debian" ]; then
   sudo apt update
   sudo apt install gh
 elif [ $DISTRO = "arch" ]; then
-  pacman -S github-cli
+  sudo pacman -S github-cli
 fi
 
 
@@ -164,7 +169,7 @@ nicelog "💻 Zsh and Oh My ZSH!"
 chsh -s /usr/bin/zsh
 run-remote https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 
-ZSH_PLUGINS=".oh-my-zsh/custom/plugins"
+ZSH_PLUGINS="${HOME}/.oh-my-zsh/custom/plugins"
 mkdir -p ${ZSH_PLUGINS}/
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_PLUGINS}/zsh-syntax-highlighting
 
@@ -195,7 +200,7 @@ if [ $DISTRO = "debian" ]; then
   sudo apt install ./code.deb -y
   rm code.deb
 elif [ $DISTRO = "arch" ]; then
-  pacman -S code
+  sudo pacman -S code
 fi
 
 for extension in $(cat dotfiles/.config/Code/extensions.txt)
@@ -222,11 +227,15 @@ mkdir -p ${HOME}/dev/{projects,misc,tests,tools}
 
 
 
-echo "\\n\\n"
-echo "=================================================="
-echo "\\nNEW KILLING MACHINE SET UP\\n"
-echo "=================================================="
-echo ""
+echo "
+
+
+==================================================
+
+NEW KILLING MACHINE SET UP
+
+==================================================
+"
 read -p "Press [Enter] to use this new ship..."
 
 /usr/bin/zsh
