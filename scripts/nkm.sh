@@ -59,7 +59,7 @@ if [ $DISTRO = "debian" ]; then
   sudo apt install -y git zsh gnupg2 python3 python3-pip curl wget imagemagick ffmpeg apt-transport-https ca-certificates software-properties-common lsb_release libgit2-dev libssh2-dev openssl-dev
 elif [ $DISTRO = "arch" ]; then
   sudo pacman -Syu
-  sudo pacman -S git zsh gnupg python python-pip curl wget imagemagick ffmpeg base-devel libgit2 libssh2 openssl
+  sudo pacman -S --needed --noconfirm git zsh gnupg python python-pip curl wget zip unzip imagemagick ffmpeg base-devel libgit2 libssh2 openssl
 fi
 
 pip install -U youtube-dl
@@ -200,7 +200,7 @@ if [ $DISTRO = "debian" ]; then
   sudo apt install ./code.deb -y
   rm code.deb
 elif [ $DISTRO = "arch" ]; then
-  sudo pacman -S code
+  paru visual-studio-code-bin
 fi
 
 for extension in $(cat dotfiles/.config/Code/extensions.txt)

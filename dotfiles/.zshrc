@@ -76,7 +76,7 @@ fi
 
 if [ "$(command -v ps)" ]; then
   unalias -m 'ps'
-  alias find="procs"
+  alias ps="procs"
 fi
 
 alias git-clean="git clean -dfX"
@@ -138,4 +138,4 @@ export NVM_DIR="$HOME/.nvm"
 # blitz autocomplete setup
 BLITZ_AC_ZSH_SETUP_PATH=$HOME/.cache/@blitzjs/cli/autocomplete/zsh_setup
 test -f $BLITZ_AC_ZSH_SETUP_PATH
-source $BLITZ_AC_ZSH_SETUP_PATH;
+source $BLITZ_AC_ZSH_SETUP_PATH
