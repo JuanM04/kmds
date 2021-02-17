@@ -218,6 +218,10 @@ cp -rT dotfiles $HOME/
 sudo sh -c "cat us-jm >> /usr/share/X11/xkb/symbols/us"
 mkdir -p ${HOME}/dev/{projects,misc,tests,tools}
 
+if [ "$(command -v localectl)" ]; then
+  localectl set-x11-keymap us "" jm
+fi
+
 
 
 

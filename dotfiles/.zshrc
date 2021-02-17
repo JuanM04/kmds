@@ -139,3 +139,7 @@ export NVM_DIR="$HOME/.nvm"
 BLITZ_AC_ZSH_SETUP_PATH=$HOME/.cache/@blitzjs/cli/autocomplete/zsh_setup
 test -f $BLITZ_AC_ZSH_SETUP_PATH
 source $BLITZ_AC_ZSH_SETUP_PATH
+
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] && [[ $(command -v startx) ]]; then
+  startx
+fi

@@ -9,6 +9,7 @@ denoland.vscode-deno
 donjayamanne.githistory
 DotJoshJohnson.xml
 EditorConfig.EditorConfig
+enkia.tokyo-night
 esbenp.prettier-vscode
 felixfbecker.php-debug
 felixfbecker.php-intellisense
@@ -28,6 +29,7 @@ ms-vsliveshare.vsliveshare
 octref.vetur
 Orta.vscode-jest
 pflannery.vscode-versionlens
+PKief.material-icon-theme
 pnp.polacode
 Prisma.prisma
 q.typescript-mono-repo-import-helper
@@ -38,9 +40,8 @@ stylelint.vscode-stylelint
 svelte.svelte-vscode
 tht13.html-preview-vscode
 toba.vsfire
-vscode.docker
-vscode.yaml
 Vtrois.gitmoji-vscode
+wayou.vscode-todo-highlight
 wix.glean
 wix.vscode-import-cost
 yzhang.markdown-all-in-one
