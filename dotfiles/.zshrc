@@ -142,7 +142,5 @@ source $BLITZ_AC_ZSH_SETUP_PATH
 
 # When using Xorg
 if [[ $(command -v startx) ]] && [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-  xrandr --output HDMI-0 --mode "1920x1080" --rate 144
-  setxkbmap -layout jm-keyboard
   startx
 fi

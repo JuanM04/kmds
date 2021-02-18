@@ -88,6 +88,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 nvm install node
 npm install --global yarn
 yarn global add blitz degit serve vercel
+blitz autocomplete
 
 
 
