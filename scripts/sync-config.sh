@@ -25,5 +25,6 @@ code --list-extensions > .config/Code/extensions.txt
 
 
 cd ..
-git commit -am "[sync-config] $(date +%Y-%m-%dT%H:%M:%S%z)"
+git add .
+git commit -m "[sync-config] $(date +%Y-%m-%dT%H:%M:%S%z)"
 git push origin main

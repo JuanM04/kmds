@@ -1,0 +1,15 @@
+default  partial alphanumeric_keys
+xkb_symbols "us" {
+
+   include "us(altgr-intl)"
+   name[Group1]= "JuanM04 (us)";
+
+   key <AE09> { [        9,     parenleft,  ordfeminine                    ] };
+   key <AE10> { [        0,     parenright, masculine                      ] };
+   key <AE11> { [        minus, underscore, emdash,       degree           ] };
+   key <AE12> { [        equal, plus,       plusmn,       times            ] };
+   key <AB08> { [        comma, less,       dead_cedilla, lessthanequal    ] };
+   key <AB09> { [       period, greater,    ellipsis,     greaterthanequal ] };
+
+   include "level3(ralt_switch)"
+};
