@@ -1,3 +1,4 @@
+amatiasq.sort-imports
 aprilandjan.ascii-tree-generator
 bradlc.vscode-tailwindcss
 bungcip.better-toml
@@ -21,6 +22,7 @@ James-Yu.latex-workshop
 jpoissonnier.vscode-styled-components
 mechatroner.rainbow-csv
 mhutchie.git-graph
+mikestead.dotenv
 mrmlnc.vscode-scss
 ms-azuretools.vscode-docker
 ms-python.python
@@ -40,6 +42,7 @@ stylelint.vscode-stylelint
 svelte.svelte-vscode
 tht13.html-preview-vscode
 toba.vsfire
+ue.alphabetical-sorter
 Vtrois.gitmoji-vscode
 wayou.vscode-todo-highlight
 wix.glean

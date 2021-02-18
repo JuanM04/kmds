@@ -5,8 +5,11 @@ cd $HOME/.kmds/dotfiles
 cp $HOME/.zshrc       .
 cp $HOME/.gitconfig   .
 
-cp $HOME/.config/starship.toml            .config
-cp $HOME/.config/alacritty/alacritty.yml  .config/alacritty
+cp    $HOME/.config/starship.toml   .config/
+cp -r $HOME/.config/alacritty       .config/
+cp -r $HOME/.config/qtile           .config/
+cp -r $HOME/.config/dunst           .config/
+cp -r $HOME/.config/rofi            .config/
 
 
 

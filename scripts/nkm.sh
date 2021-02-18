@@ -62,7 +62,7 @@ elif [ $DISTRO = "arch" ]; then
   sudo pacman -S --needed --noconfirm git zsh gnupg python python-pip curl wget zip unzip imagemagick ffmpeg base-devel libgit2 libssh2 openssl
 fi
 
-pip install -U youtube-dl
+pip install -U youtube-dl psutil
 
 
 
@@ -97,11 +97,10 @@ nicelog "🦀 Installing Rust..."
 
 if [ $DISTRO = "debian" ]; then
 	run-remote https://sh.rustup.rs
+  source $HOME/.cargo/env
 elif [ $DISTRO = "arch" ]; then
 	sudo pacman -S rust
 fi
-
-source $HOME/.cargo/env
 
 
 
@@ -186,7 +185,7 @@ if [ $DISTRO = "debian" ]; then
   rm FiraCode.zip
   fc-cache -fv
 elif [ $DISTRO = "arch" ]; then
-  paru nerd-fonts-fira-code
+  paru -S nerd-fonts-fira-code
 fi
 
 
@@ -200,7 +199,7 @@ if [ $DISTRO = "debian" ]; then
   sudo apt install ./code.deb -y
   rm code.deb
 elif [ $DISTRO = "arch" ]; then
-  paru visual-studio-code-bin
+  paru -S visual-studio-code-bin
 fi
 
 for extension in $(cat dotfiles/.config/Code/extensions.txt)
@@ -215,11 +214,11 @@ done
 nicelog "📜 Applying dotfiles..."
 
 cp -rT dotfiles $HOME/
-sudo sh -c "cat us-jm >> /usr/share/X11/xkb/symbols/us"
+sudo cp jm-keyboard /usr/share/X11/xkb/symbols
 mkdir -p ${HOME}/dev/{projects,misc,tests,tools}
 
 if [ "$(command -v localectl)" ]; then
-  localectl set-x11-keymap us "" jm
+  localectl set-x11-keymap jm-keyboard
 fi
 
 

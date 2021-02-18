@@ -19,7 +19,6 @@ export ZSH=$HOME/.oh-my-zsh
 plugins=(
   colored-man-pages
   command-not-found
-  copyfile
   docker
   docker-compose
   git
@@ -38,7 +37,7 @@ eval "$(starship init zsh)"
 # Aliases #
 #=========#
 alias config="nano ~/.zshrc && source ~/.zshrc"
-alias copy="xclip -selection clipboard"
+alias copy="xclip"
 alias run="zsh"
 
 function = {
@@ -80,6 +79,7 @@ if [ "$(command -v ps)" ]; then
 fi
 
 alias git-clean="git clean -dfX"
+alias yarn-upgrade="yarn upgrade-interactive --latest"
 
 #=========#
 # Scripts #
@@ -140,6 +140,9 @@ BLITZ_AC_ZSH_SETUP_PATH=$HOME/.cache/@blitzjs/cli/autocomplete/zsh_setup
 test -f $BLITZ_AC_ZSH_SETUP_PATH
 source $BLITZ_AC_ZSH_SETUP_PATH
 
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] && [[ $(command -v startx) ]]; then
+# When using Xorg
+if [[ $(command -v startx) ]] && [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+  xrandr --output HDMI-0 --mode "1920x1080" --rate 144
+  setxkbmap -layout jm-keyboard
   startx
 fi

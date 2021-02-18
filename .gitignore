@@ -1,3 +1,4 @@
 .todo
 sensitive/*
 !sensitive/.keep
+**/__pycache__
