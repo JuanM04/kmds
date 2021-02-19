@@ -380,9 +380,9 @@
 #    msg_urgency = critical
 #    fullscreen = show
 
-#[espeak]
-#    summary = "*"
-#    script = dunst_espeak.sh
+[espeak]
+   summary = "*"
+   script = ~/.config/dunst/alert.sh
 
 #[script-test]
 #    summary = "*script*"

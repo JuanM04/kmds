@@ -37,6 +37,7 @@ Prisma.prisma
 q.typescript-mono-repo-import-helper
 ritwickdey.LiveServer
 rust-lang.rust
+silvenon.mdx
 SPGoding.datapack-language-server
 stylelint.vscode-stylelint
 svelte.svelte-vscode
