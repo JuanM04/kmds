@@ -56,10 +56,10 @@ fi
 if [ $DISTRO = "debian" ]; then
   sudo apt update
   sudo apt upgrade -y
-  sudo apt install -y git zsh gnupg2 python3 python3-pip curl wget imagemagick ffmpeg apt-transport-https ca-certificates software-properties-common lsb_release libgit2-dev libssh2-dev openssl-dev
+  sudo apt install -y git zsh gnupg2 python3 python3-pip curl wget at imagemagick ffmpeg apt-transport-https ca-certificates software-properties-common lsb_release libgit2-dev libssh2-dev openssl-dev
 elif [ $DISTRO = "arch" ]; then
   sudo pacman -Syu
-  sudo pacman -S --needed --noconfirm git zsh gnupg python python-pip curl wget zip unzip imagemagick ffmpeg base-devel libgit2 libssh2 openssl
+  sudo pacman -S --needed --noconfirm git zsh gnupg python python-pip curl wget at zip unzip imagemagick ffmpeg base-devel libgit2 libssh2 openssl
 fi
 
 pip install -U youtube-dl psutil
