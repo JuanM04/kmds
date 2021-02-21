@@ -128,6 +128,16 @@ function wsl-unmount {
   sudo rm -rf /mnt/$1
 }
 
+function matecocido {
+  echo "notify-send 'Matecocido!'" | at now + 4 minutes
+}
+
+function update-all {
+  sudo pacman -Syu
+  sudo paru -Syu
+  yarn global upgrade --latest
+}
+
 #========#
 # Others #
 #========#

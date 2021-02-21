@@ -1,4 +1,3 @@
-amatiasq.sort-imports
 aprilandjan.ascii-tree-generator
 bradlc.vscode-tailwindcss
 bungcip.better-toml
