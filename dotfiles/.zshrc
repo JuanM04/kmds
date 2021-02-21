@@ -134,7 +134,7 @@ function matecocido {
 
 function update-all {
   sudo pacman -Syu
-  sudo paru -Syu
+  paru -Syu
   yarn global upgrade --latest
 }
 

@@ -209,7 +209,7 @@ screens = [
                 widget.TextBox(
                     text = "Updates ",
                     padding = 5,
-                    mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')},
+                    mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(terminal + ' -e update-all')},
                     background = color_purple
                 ),
                 widget.Net(
