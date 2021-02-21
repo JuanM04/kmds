@@ -58,6 +58,11 @@ if [ "$(command -v exa)" ]; then
   alias ll='exa -l --color always --icons -a -s type'
 fi
 
+if [ "$(command -v btm)" ]; then
+  unalias -m 'top'
+  alias top="btm"
+fi
+
 if [ "$(command -v bat)" ]; then
   unalias -m 'cat'
   alias cat='bat -pp --theme="Nord"'
@@ -134,6 +139,7 @@ function matecocido {
 
 function update-all {
   sudo pacman -Syu
+  sudo pacman -Rns $(pacman -Qtdq)
   paru -Syu
   yarn global upgrade --latest
 }

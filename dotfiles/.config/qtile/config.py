@@ -3,7 +3,7 @@ import os
 import subprocess
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget, hook
+from libqtile import bar, layout, widget, hook, qtile
 from libqtile.config import Click, Drag, Group, Key, Screen, Match
 from libqtile.lazy import lazy
 
@@ -81,13 +81,13 @@ groups = [
     Group(
         'ﭮ Discord',
         layout='max',
-        matches=[Match(wm_class=["discord"])],
+        matches=[Match(wm_class="discord")],
         exclusive=True
     ),
     Group(
         ' Telegram',
         layout='max',
-        matches=[Match(wm_class=["TelegramDesktop"])],
+        matches=[Match(wm_class="TelegramDesktop")],
         exclusive=True
     ),
     Group(' Others', layout='max'),
@@ -134,6 +134,14 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+stats_widgets_args = {
+    'padding': 5,
+    'mouse_callbacks': {
+        'Button1': lambda: qtile.cmd_spawn(terminal + ' -e btm')
+    },
+
+}
+
 screens = [
     Screen(
         top=bar.Bar(
@@ -144,7 +152,7 @@ screens = [
                 ),
                 widget.TextBox(
                     text = "λ",
-                    mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn('rofi -show run')}
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('rofi -show run')}
                 ),
                 widget.Sep(
                     linewidth = 0,
@@ -200,23 +208,24 @@ screens = [
                     padding = 5,
                     background = color_red,
                 ),
-                widget.TextBox(
-                    text = " ⟳",
-                    padding = 2,
-                    background = color_purple,
-                    fontsize = 14
+                widget.CPU(
+                    format = '  {load_percent}% ',
+                    background = color_cyan,
+                    foreground = color_background,
+                    **stats_widgets_args
                 ),
-                widget.TextBox(
-                    text = "Updates ",
-                    padding = 5,
-                    mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(terminal + ' -e update-all')},
-                    background = color_purple
+                widget.Memory(
+                    format = '  {MemUsed: .2f}GB ',
+                    measure_mem = 'G',
+                    background = color_green,
+                    foreground = color_background,
+                    **stats_widgets_args
                 ),
                 widget.Net(
                     interface = "enp34s0",
                     format = ' {down} ↓↑ {up} ',
                     background = color_current,
-                    padding = 5
+                    **stats_widgets_args
                 ),
                 widget.Clock(
                     format = " %A, %B %d  [ %H:%M ]"

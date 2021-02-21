@@ -109,7 +109,7 @@ fi
 
 nicelog "🦀 Installing Rust binaries (including, but no limited to, Alacritty, Starship, Cargo Update)..."
 
-cargo install alacritty bat cargo-update exa fd-find git-delta procs ripgrep starship
+cargo install alacritty bat bottom cargo-update exa fd-find git-delta procs ripgrep starship
 
 if [ $DISTRO = "arch" ]; then
   git clone https://aur.archlinux.org/paru.git
