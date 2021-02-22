@@ -55,6 +55,8 @@ keys = [
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
 
+    Key([mod], 'f', lazy.window.toggle_floating(), desc="Toggle floating window"),
+
     Key([mod, "control"], "r", lazy.restart(), desc="Restart qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown qtile"),
     Key([mod], "r", lazy.spawncmd(),
@@ -111,7 +113,10 @@ layouts = [
         border_normal=color_background
     ),
     layout.Max(),
-    layout.Floating(),
+    layout.Floating(
+        border_focus=color_comment,
+        border_normal=color_background
+    ),
     #layout.Stack(num_stacks=2),
     # Try more layouts by unleashing below layouts.
     # layout.Bsp(),

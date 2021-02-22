@@ -36,14 +36,18 @@ if (args.r) {
   const packageJson = JSON.parse(Deno.readTextFileSync("package.json"));
   if (!packageJson.devDependencies) Deno.exit(1);
 
-  if (args._.length > 0) {
+  let packages = Object.assign([], args._)
+
+  if(typeof args.r === 'string') packages.push(args.r)
+
+  if (packages.length > 0) {
     // Remove packages
     if (!packageJson.dependencies) Deno.exit(1);
 
     const packagesToRemove = Object.keys(packageJson.devDependencies).filter(
       (pkg) => {
         if (!pkg.startsWith("@types")) return false;
-        return args._.includes(pkg.substr(7));
+        return packages.includes(pkg.substr(7));
       }
     );
 
@@ -52,7 +56,7 @@ if (args.r) {
         [
           ...packagesToRemove,
           ...(typeof args.r === "string" ? [args.r] : []),
-          ...args._,
+          ...packages,
         ].join(" ")
     );
     Deno.exit();
@@ -68,17 +72,19 @@ if (args.r) {
     Deno.exit();
   }
 } else {
-  if (args._.length > 0) {
+  let packages = Object.assign([], args._)
+
+  if (packages.length > 0) {
     // Add packages
     const packagesWithTypes = await Promise.all(
-      args._.map((dep) => typeof dep === "string" && packageHasTypes(dep))
+      packages.map((dep) => typeof dep === "string" && packageHasTypes(dep))
     );
 
-    const types = args._.filter((_, i) => packagesWithTypes[i]).map(
+    const types = packages.filter((_, i) => packagesWithTypes[i]).map(
       (dep) => `@types/${dep}`
     );
 
-    await exec("yarn add " + args._.join(" "));
+    await exec("yarn add " + packages.join(" "));
     if (types.length > 0) exec("yarn add -D " + types.join(" "));
     Deno.exit();
   } else {

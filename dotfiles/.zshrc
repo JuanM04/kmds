@@ -17,7 +17,6 @@ export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 export ZSH=$HOME/.oh-my-zsh
 
 plugins=(
-  colored-man-pages
   command-not-found
   docker
   docker-compose
@@ -66,6 +65,7 @@ fi
 if [ "$(command -v bat)" ]; then
   unalias -m 'cat'
   alias cat='bat -pp --theme="Nord"'
+  export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=Nord'"
 fi
 
 if [ "$(command -v rg)" ]; then
