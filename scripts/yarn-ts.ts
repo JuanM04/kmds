@@ -55,7 +55,6 @@ if (args.r) {
       "yarn remove " +
         [
           ...packagesToRemove,
-          ...(typeof args.r === "string" ? [args.r] : []),
           ...packages,
         ].join(" ")
     );

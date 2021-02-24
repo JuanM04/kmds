@@ -19,6 +19,7 @@ GrapeCity.gc-excelviewer
 GraphQL.vscode-graphql
 James-Yu.latex-workshop
 jpoissonnier.vscode-styled-components
+lightyen.tailwindcss-intellisense-twin
 mechatroner.rainbow-csv
 mhutchie.git-graph
 mikestead.dotenv
