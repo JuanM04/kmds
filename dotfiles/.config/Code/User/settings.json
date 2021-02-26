@@ -15,7 +15,6 @@
   "editor.renderWhitespace": "selection",
   "editor.formatOnSave": true,
   "breadcrumbs.enabled": true,
-  "window.zoomLevel": 1,
   "editor.semanticHighlighting.enabled": false,
 
   "workbench.list.smoothScrolling": true,
@@ -89,6 +88,10 @@
     {
       "fileMatch": ["now.json", "vercel.json"],
       "url": "https://gist.githubusercontent.com/JuanM04/9d472a39ca25106a71cb1ab5a5847d5d/raw/a5422308ee132223427d8dce59aa821d7e983726/vercel.schema.json"
+    },
+    {
+      "fileMatch": [".prettierrc"],
+      "url": "http://json.schemastore.org/prettierrc"
     }
   ],
 
@@ -120,4 +123,5 @@
   },
   "rust.rust-analyzer.releaseTag": "stable",
   "liveServer.settings.donotShowInfoMsg": true,
+  "window.zoomLevel": 1,
 }

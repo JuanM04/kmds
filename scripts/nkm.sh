@@ -87,7 +87,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 nvm install node
 npm install --global yarn
-yarn global add blitz degit insect serve vercel
+yarn global add blitz degit insect serve taskbook vercel
 blitz autocomplete
 
 
@@ -100,7 +100,9 @@ if [ $DISTRO = "debian" ]; then
 	run-remote https://sh.rustup.rs
   source $HOME/.cargo/env
 elif [ $DISTRO = "arch" ]; then
-	sudo pacman -S rust
+	sudo pacman -S rustup
+  rustup install stable
+  rustup default stable
 fi
 
 
