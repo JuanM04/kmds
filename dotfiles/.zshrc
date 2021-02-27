@@ -1,13 +1,17 @@
 DEV=$HOME/dev
 export p=$DEV/projects
 
+export GOPATH="$DEV/tools/go"
+
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/.deno/bin"
+export PATH="$PATH:$GOPATH/bin"
 #export PATH="$PATH:$DEV/tools/flutter/bin"
 #export PATH="$PATH:$HOME/.pub-cache/bin"
 #export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
+
 
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 
@@ -93,7 +97,7 @@ SCRIPTS="$HOME/.kmds/scripts"
 alias inotify-consumers="run $SCRIPTS/inotify-consumers.sh"
 alias replace="deno run --allow-read --allow-write $SCRIPTS/replace.ts"
 alias secrets-manager="run $SCRIPTS/secrets-manager.sh"
-alias setup-rpi="deno run --allow-write $SCRIPTS/setup-rpi.ts"
+alias setup-rpi="deno run --allow-read --allow-write --unstable $SCRIPTS/setup-rpi.ts"
 alias sync-config="run $SCRIPTS/sync-config.sh"
 alias yarn-ts="deno run --allow-run --allow-net --allow-read $SCRIPTS/yarn-ts.ts"
 

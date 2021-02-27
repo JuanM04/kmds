@@ -176,6 +176,7 @@ screens = [
                     disable_drag = True,
                     highlight_color = color_current,
                     highlight_method = "line",
+                    urgent_border = color_red,
                     this_current_screen_border = color_comment,
                     other_current_screen_border = color_background,
                     other_screen_border = color_background,
