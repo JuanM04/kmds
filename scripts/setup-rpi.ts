@@ -1,4 +1,7 @@
-import InputLoop from "https://deno.land/x/input@2.0.2/index.ts";
+import {
+  Input,
+  Secret,
+} from "https://deno.land/x/cliffy@v0.17.2/prompt/mod.ts";
 
 const genWPASupplicant = (ssid: string, pass: string) => `country=AR
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -11,9 +14,8 @@ network={
   key_mgmt=WPA-PSK
 }`;
 
-const input = new InputLoop();
-const wifiSSID = await input.question("WiFi SSID: ", false);
-const wifiPass = await input.question("WiFi Password: ", false);
+const wifiSSID = await Input.prompt("WiFi SSID");
+const wifiPass = await Secret.prompt("WiFi Password");
 
 await Deno.create("ssh");
 await Deno.writeTextFile(

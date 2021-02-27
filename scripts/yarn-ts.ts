@@ -1,5 +1,5 @@
-import { exec } from "https://deno.land/x/exec/mod.ts";
-import { parse } from "https://deno.land/std/flags/mod.ts";
+import { exec } from "https://deno.land/x/exec@0.0.5/mod.ts";
+import { parseFlags } from "https://deno.land/x/cliffy@v0.17.2/flags/mod.ts";
 
 async function packageHasTypes(pkg: string): Promise<boolean> {
   if (pkg.includes("/")) return false;
@@ -16,9 +16,23 @@ async function packageHasTypes(pkg: string): Promise<boolean> {
   return true;
 }
 
-const args = parse(Deno.args);
+const { flags, unknown: packages } = parseFlags(Deno.args, {
+  allowEmpty: true,
+  flags: [
+    {
+      name: "help",
+      aliases: ["h"],
+      standalone: true,
+    },
+    {
+      name: "remove",
+      aliases: ["r"],
+      standalone: true,
+    },
+  ],
+});
 
-if (args.help || args.h) {
+if (flags.help) {
   console.log(
     [
       "Yarn TS",
@@ -26,19 +40,15 @@ if (args.help || args.h) {
       "$ yarn-ts [packages] [options]",
       "",
       "Options",
-      "  -p  Remove dependencies",
+      "  -r  Remove dependencies",
     ].join("\n")
   );
   Deno.exit();
 }
 
-if (args.r) {
+if (flags.remove) {
   const packageJson = JSON.parse(Deno.readTextFileSync("package.json"));
   if (!packageJson.devDependencies) Deno.exit(1);
-
-  let packages = Object.assign([], args._)
-
-  if(typeof args.r === 'string') packages.push(args.r)
 
   if (packages.length > 0) {
     // Remove packages
@@ -51,13 +61,7 @@ if (args.r) {
       }
     );
 
-    await exec(
-      "yarn remove " +
-        [
-          ...packagesToRemove,
-          ...packages,
-        ].join(" ")
-    );
+    await exec("yarn remove " + [...packagesToRemove, ...packages].join(" "));
     Deno.exit();
   } else {
     // Remove all types
@@ -71,17 +75,15 @@ if (args.r) {
     Deno.exit();
   }
 } else {
-  let packages = Object.assign([], args._)
-
   if (packages.length > 0) {
     // Add packages
     const packagesWithTypes = await Promise.all(
       packages.map((dep) => typeof dep === "string" && packageHasTypes(dep))
     );
 
-    const types = packages.filter((_, i) => packagesWithTypes[i]).map(
-      (dep) => `@types/${dep}`
-    );
+    const types = packages
+      .filter((_, i) => packagesWithTypes[i])
+      .map((dep) => `@types/${dep}`);
 
     await exec("yarn add " + packages.join(" "));
     if (types.length > 0) exec("yarn add -D " + types.join(" "));
