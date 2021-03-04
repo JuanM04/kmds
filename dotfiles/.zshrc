@@ -88,6 +88,8 @@ if [ "$(command -v ps)" ]; then
 fi
 
 alias git-clean="git clean -dfX"
+alias git-undo="git reset --soft HEAD~1"
+
 alias yarn-upgrade="yarn upgrade-interactive --latest"
 
 #=========#
@@ -95,6 +97,7 @@ alias yarn-upgrade="yarn upgrade-interactive --latest"
 #=========#
 SCRIPTS="$HOME/.kmds/scripts"
 alias inotify-consumers="run $SCRIPTS/inotify-consumers.sh"
+alias mp3-tags="deno run --allow-run --unstable $SCRIPTS/mp3-tags.ts"
 alias replace="deno run --allow-read --allow-write $SCRIPTS/replace.ts"
 alias secrets-manager="run $SCRIPTS/secrets-manager.sh"
 alias setup-rpi="deno run --allow-read --allow-write --unstable $SCRIPTS/setup-rpi.ts"

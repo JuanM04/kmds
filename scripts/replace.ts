@@ -20,6 +20,7 @@ const { flags, unknown: args } = parseFlags(Deno.args, {
       name: "new",
       aliases: ["n"],
       type: OptionType.STRING,
+      optionalValue: true,
     },
   ],
 });
@@ -45,8 +46,7 @@ if (typeof flags.previous !== "string") {
 }
 
 if (typeof flags.new !== "string") {
-  console.error("Missing `new` option");
-  Deno.exit(1);
+  flags.new = "";
 }
 
 if (args.length === 0) {

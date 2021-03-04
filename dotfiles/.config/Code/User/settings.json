@@ -86,8 +86,8 @@
   },
   "json.schemas": [
     {
-      "fileMatch": ["now.json", "vercel.json"],
-      "url": "https://gist.githubusercontent.com/JuanM04/9d472a39ca25106a71cb1ab5a5847d5d/raw/a5422308ee132223427d8dce59aa821d7e983726/vercel.schema.json"
+      "fileMatch": ["vercel.json"],
+      "url": "https://gist.githubusercontent.com/JuanM04/9d472a39ca25106a71cb1ab5a5847d5d/raw/vercel.schema.json"
     },
     {
       "fileMatch": [".prettierrc"],
