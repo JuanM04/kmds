@@ -10,6 +10,7 @@ if (Deno.args.length !== 1) {
 }
 
 const file = Deno.args[0];
+const splittedFile = file.substr(0, file.length - 4).split(" - ");
 
 const whichEye = await exec("which eyeD3", { output: OutputMode.Capture });
 
@@ -22,13 +23,13 @@ const result = await prompt([
     name: "title",
     message: "Title",
     type: Input,
-    default: file.split(" - ")?.[1].replace(".mp3", ""),
+    default: splittedFile[1],
   },
   {
     name: "artist",
     message: "Artist(s)",
     type: Input,
-    default: file.split(" - ")[0],
+    default: splittedFile[0],
   },
   {
     name: "date",

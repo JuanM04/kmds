@@ -2,6 +2,7 @@ DEV=$HOME/dev
 export p=$DEV/projects
 
 export GOPATH="$DEV/tools/go"
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.local/bin"
@@ -12,8 +13,7 @@ export PATH="$PATH:$GOPATH/bin"
 #export PATH="$PATH:$HOME/.pub-cache/bin"
 #export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
 
-
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+export EDITOR="vim"
 
 #===========#
 # Oh My Zsh #
