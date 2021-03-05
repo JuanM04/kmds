@@ -10,3 +10,6 @@ fi
 if [ "$(command -v telegram-desktop)" ]; then
   telegram-desktop &
 fi
+if [ "$(command -v brave)" ]; then
+  brave &
+fi
