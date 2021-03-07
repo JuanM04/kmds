@@ -14,6 +14,7 @@ export PATH="$PATH:$GOPATH/bin"
 #export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
 
 export EDITOR="vim"
+export GPG_TTY=/dev/pts/0
 
 #===========#
 # Oh My Zsh #
@@ -86,6 +87,8 @@ if [ "$(command -v ps)" ]; then
   unalias -m 'ps'
   alias ps="procs"
 fi
+
+alias ssh-add="ssh-add -t 1h"
 
 alias git-clean="git clean -dfX"
 alias git-undo="git reset --soft HEAD~1"
