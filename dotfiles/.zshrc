@@ -15,6 +15,7 @@ export PATH="$PATH:$GOPATH/bin"
 
 export EDITOR="vim"
 export GPG_TTY=/dev/pts/0
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 #===========#
 # Oh My Zsh #
@@ -150,7 +151,7 @@ function matecocido {
 function update-all {
   sudo pacman -Syu
   sudo pacman -Rns $(pacman -Qtdq)
-  paru -Syu
+  paru -Syu --ignore ttf-google-fonts-git
   yarn global upgrade --latest
 }
 

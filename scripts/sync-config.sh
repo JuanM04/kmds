@@ -10,6 +10,7 @@ cp -r $HOME/.config/alacritty       .config/
 cp -r $HOME/.config/qtile           .config/
 cp -r $HOME/.config/dunst           .config/
 cp -r $HOME/.config/rofi            .config/
+cp -r $HOME/.config/systemd         .config/
 
 
 
