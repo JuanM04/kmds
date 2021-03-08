@@ -26,6 +26,12 @@ code --list-extensions > .config/Code/extensions.txt
 
 
 cd ..
+
+if [ -z "$(git status -s)" ]; then
+  echo "There are no changes"
+  exit 0
+fi
+
 git add .
 
 if [ -z "$1" ]; then

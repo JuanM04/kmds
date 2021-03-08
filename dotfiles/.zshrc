@@ -106,6 +106,7 @@ alias replace="deno run --allow-read --allow-write $SCRIPTS/replace.ts"
 alias secrets-manager="run $SCRIPTS/secrets-manager.sh"
 alias setup-rpi="deno run --allow-read --allow-write --unstable $SCRIPTS/setup-rpi.ts"
 alias sync-config="run $SCRIPTS/sync-config.sh"
+alias update-all="run $SCRIPTS/update-all.sh"
 alias yarn-ts="deno run --allow-run --allow-net --allow-read $SCRIPTS/yarn-ts.ts"
 
 function cdc {
@@ -146,13 +147,6 @@ function wsl-unmount {
 
 function matecocido {
   echo "notify-send 'Matecocido!'" | at now + 4 minutes
-}
-
-function update-all {
-  sudo pacman -Syu
-  sudo pacman -Rns $(pacman -Qtdq)
-  paru -Syu --ignore ttf-google-fonts-git
-  yarn global upgrade --latest
 }
 
 #========#
