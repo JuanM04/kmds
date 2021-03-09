@@ -4,6 +4,7 @@ cd $HOME/.kmds/dotfiles
 
 cp $HOME/.zshrc       .
 cp $HOME/.gitconfig   .
+cp $HOME/.huskyrc     .
 
 cp    $HOME/.config/starship.toml   .config/
 cp -r $HOME/.config/alacritty       .config/
